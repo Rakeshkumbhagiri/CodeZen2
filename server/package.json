@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "@google/genai": "^1.38.0",
+    "@google/generative-ai": "^0.24.1",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.1.4",
+    "openai": "^6.16.0"
+  },
+  "name": "server",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-all": "npm install --prefix server && npm install --prefix client",
+  "start": "concurrently \"npm run start --prefix server\" \"npm run start --prefix client\"",
+  "build-client": "npm run build --prefix client"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
