@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 import { motion } from "framer-motion";
-// import { toast } from "react-toastify"; 
+import { toast } from "react-toastify"; 
   
 
 export default function AuthModal({ mode, close }) {
@@ -33,9 +33,9 @@ export default function AuthModal({ mode, close }) {
         navigate("/chat");
       }
     } catch (err) {
-      //  toast.error(err.message || "Invalid credentials");
-      alert("Invalid Credentials");   
-          // Toastify("Error: " + (err.response?.data?.message || err.message), "error");
+       toast.error(err.message || "Invalid credentials");
+      // alert("Invalid Credentials");   
+    //   Toastify("Error: " + (err.response?.data?.message || err.message), "error");
     //       const message =
     // err.response?.data?.message || err.message || "Invalid credentials";
 

@@ -8,7 +8,7 @@ const Profile = () => {
       const token = localStorage.getItem("token");
       if (!token) return;
 
-      const res = await fetch("http://localhost:5000/api/users/profile", {
+      const res = await fetch("https://codezen2-server.onrender.com/api/users/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -36,7 +36,7 @@ const Profile = () => {
   <div className="w-full max-w-md p-8 text-white border shadow-xl backdrop-blur-lg bg-white/10 border-white/20 rounded-2xl">
 
     <h2 className="mb-6 text-3xl font-bold text-center">
-      Profile
+      User Information
     </h2>
 
     <div className="space-y-4">
