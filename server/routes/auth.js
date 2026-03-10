@@ -2,6 +2,10 @@ import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import dotenv from "dotenv";
+dotenv.config();
+import { sendWelcomeMail, sendLoginMail } from "../config/mailer.js";
+
 
 const router = express.Router();
 
@@ -28,6 +32,7 @@ router.post("/register", async (req, res) => {
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES_IN }
   );
+   await sendWelcomeMail(user.email);
 
   res.status(201).json({ token });
 });
@@ -80,6 +85,7 @@ router.post("/login", async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN }
     );
+   await sendLoginMail(user.email);
 
     res.json({ token });
   } catch (error) {
