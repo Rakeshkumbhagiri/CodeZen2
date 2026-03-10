@@ -81,7 +81,7 @@ const Navbar = () => {
         
           <img className="w-10 h-10" src="./assets/my-icon.png" alt="logo"></img>
        <div className="-ml-44">
-        <h1 className="items-start text-2xl font-bold text-green-400 -ml-96 font-logo ">CodeZen</h1>
+        <h1 a href="/chat" className="items-start text-2xl font-bold text-green-400 -ml-96 font-logo ">CodeZen</h1>
        </div>
         <div className="flex items-center gap-6">
           {!isLoggedIn ? (
@@ -132,11 +132,11 @@ const Navbar = () => {
                   <button
                     onClick={() => {
                       setDropdownOpen(false);
-                      window.location.href = "/settings";
+                      window.location.href = "/chat";
                     }}
                     className="block w-full px-4 py-2 text-left hover:bg-gray-300"
                   >
-                    Settings
+                    ChatBot
                   </button>
 
                   <button
