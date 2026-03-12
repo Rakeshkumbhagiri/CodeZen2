@@ -161,7 +161,7 @@ return (
       <nav className="flex flex-wrap items-center justify-between px-4 py-3 text-white bg-slate-900 sm:px-6 md:px-8 md:py-4">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <img className="w-8 h-8 sm:w-10 sm:h-10" src="./assets/my-icon.png" alt="logo" />
+          <img className="w-8 h-8 sm:w-10 sm:h-10" src="./assets/my-icon.webp" alt="logo" />
           <h1 className="text-xl font-bold text-green-400 sm:text-2xl md:text-3xl font-logo">
             CodeZen
           </h1>

@@ -3,9 +3,9 @@ import { useState, useEffect, useRef } from "react";
 import Footer from "./Footer";
 const scrollToTop = () => window.scrollTo({top: 0,behavior: "smooth"});
 const screenshots = [
-  { src: "/chat-preview-1.png", alt: "Chat preview 1", x: "-20%", y: "0%" },
-  { src: "/chat-preview-2.png", alt: "Chat preview 2", x: "0%", y: "-20%" },
-  { src: "/chat-preview-3.png", alt: "Chat preview 3", x: "20%", y: "0%" },
+  { src: "/chat-preview-1.webp", alt: "Chat preview 1", x: "-20%", y: "0%" },
+  { src: "/chat-preview-2.webp", alt: "Chat preview 2", x: "0%", y: "-20%" },
+  { src: "/chat-preview-3.webp", alt: "Chat preview 3", x: "20%", y: "0%" },
 ];
 
 function useParallax(strength = 20) {
