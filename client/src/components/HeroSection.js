@@ -18,10 +18,10 @@ export function HeroSection() {
   };
 
   return (
-    <section className="container flex flex-col items-center gap-8 px-20 py-18 md:flex-row">
+    <section className="container relative flex flex-col items-center gap-8 px-20 py-18 md:flex-row">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <span className="items-start font-serif text-5xl">
-          <a href="/" >CodeZen</a>
+          <a href="/">CodeZen</a>
         </span>
         <h1 className="mt-10 text-5xl font-bold">
           AI-Powered Debugging of DSA Problems
@@ -72,7 +72,9 @@ export function HeroSection() {
           {Loading ? "Loading..." : "Get Started"}
         </button>
       </motion.div>
-      <LanguagesOrbit />
+      
+        <LanguagesOrbit />
+      
       {/* modal */}
       {Loading && <AnimatedLoader />}
       {showModal && (

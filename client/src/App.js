@@ -1,9 +1,10 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { Suspense,lazy } from "react";
 
 import HomePage from "./pages/HomePage";
-import Login from "./pages/Login";
-import ChatLayout from "./pages/ChatLayout";
-import Profile from "./pages/Profile";
+const Login = lazy(() => import("./pages/Login"));
+const ChatLayout = lazy(() => import("./pages/ChatLayout"));
+const Profile = lazy(() => import("./pages/Profile"));
 
 // ✅ ProtectedRoute wrapper
 const ProtectedRoute = ({ children }) => {
@@ -15,6 +16,7 @@ function App() {
   const isAuthenticated = !!localStorage.getItem("token");
 
   return (
+    <Suspense fallback="Loading...">
     <Routes>
       {/* Home → Get Started */}
       <Route path="/" element={<HomePage />} />
@@ -54,6 +56,7 @@ function App() {
       {/* Fallback */}
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
+    </Suspense>
   );
 }
 

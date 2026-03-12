@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Plus,ArrowBigLeftDashIcon} from "lucide-react";
 import { useRef } from "react";
 import api from "../api";
 import Chat from "./Chat";
+import { initSocket } from "../components/socket";
 import { useNavigate } from "react-router-dom";
 
 export default function ChatLayout({ setToken }) {
@@ -23,6 +24,17 @@ export default function ChatLayout({ setToken }) {
   const navigate = useNavigate();
   const textareaRef = useRef(null);
   const activeChat = chats.find((c) => c.id === activeChatId);
+  useEffect(() => {
+    const socket = initSocket();
+
+    socket.on("connect", () => {
+      console.log("Socket connected:", socket.id);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
   const saveChatTitle = (id) => {
     if (!tempTitle.trim()) {
       setEditingChatId(null);

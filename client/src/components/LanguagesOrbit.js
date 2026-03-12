@@ -10,7 +10,7 @@ const LanguagesOrbit = () => {
       {/* Inner Orbit */}
       <div className="absolute orbit w-[240px] h-[240px] rounded-full border border-black">
         <div className="absolute -translate-x-1/2 -top-6 left-1/2">
-          <Icon src="/icons/python.webp" />
+          <Icon src="/icons/python.webp"  loading="lazy"/>
         </div>
         <div className="absolute -translate-x-1/2 -bottom-6 left-1/2">
           <Icon src="/icons/cpp.webp" />
@@ -20,7 +20,7 @@ const LanguagesOrbit = () => {
       {/* Outer Orbit (reverse) */}
       <div className="absolute orbit-reverse w-[380px] h-[380px] rounded-full border border-black">
         <div className="absolute -translate-x-1/2 -top-8 left-1/2">
-          <Icon src="/icons/java.webp" size="large" />
+          <Icon src="/icons/java.webp" size="large"  loading="lazy"/>
         </div>
         <div className="absolute -translate-x-1/2 -bottom-8 left-1/2">
           <Icon src="/icons/c.webp" size="large" />

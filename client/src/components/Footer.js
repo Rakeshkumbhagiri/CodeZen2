@@ -13,7 +13,7 @@ export default function Footer() {
 
           {/* Brand Section */}
           <div>
-            <h2 classN  ame="text-2xl font-bold text-green-400">
+            <h2 className="text-2xl font-bold text-green-400">
               CodeZen
             </h2>
 
