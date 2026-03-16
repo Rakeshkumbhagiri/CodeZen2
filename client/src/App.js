@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Suspense,lazy } from "react";
+import { useEffect } from "react";
 
 import HomePage from "./pages/HomePage";
 const Login = lazy(() => import("./pages/Login"));
@@ -14,6 +15,14 @@ const ProtectedRoute = ({ children }) => {
 
 function App() {
   const isAuthenticated = !!localStorage.getItem("token");
+
+   // optional 
+   useEffect(() => {
+    fetch("https://codezen2-server.onrender.com")
+      .then(() => console.log("Backend awake"))
+      .catch(() => console.log("Wake failed"));
+  }, []);
+
 
   return (
     <Suspense fallback="Loading...">

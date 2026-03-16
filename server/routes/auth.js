@@ -85,9 +85,11 @@ router.post("/login", async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN }
     );
-   await sendLoginMail(user.email);
-
+    
     res.json({ token });
+    //Newly added: Send login notification email
+    
+    sendLoginMail(user.email).catch(console.error);
   } catch (error) {
   console.error("LOGIN ERROR DETAILS:", error);
   res.status(500).json({

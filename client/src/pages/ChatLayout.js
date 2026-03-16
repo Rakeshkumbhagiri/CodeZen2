@@ -25,16 +25,17 @@ export default function ChatLayout({ setToken }) {
   const textareaRef = useRef(null);
   const activeChat = chats.find((c) => c.id === activeChatId);
   useEffect(() => {
-    const socket = initSocket();
+  const socket = initSocket();
 
-    socket.on("connect", () => {
-      console.log("Socket connected:", socket.id);
-    });
+  socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    console.log("Server:", data);
+  };
 
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+  return () => {
+    socket.close();
+  };
+}, []);
   const saveChatTitle = (id) => {
     if (!tempTitle.trim()) {
       setEditingChatId(null);

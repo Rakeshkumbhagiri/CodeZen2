@@ -25,7 +25,9 @@ export default function AuthModal({ mode, close }) {
           ? { email, password }
           : { name, email, password };   // ✅ include name for register
 
-      const res = await api.post(endpoint, payload);
+      const res = await api.post(endpoint, payload,{
+        timeout: 15000,
+      });
 
       localStorage.setItem("token", res.data.token);
       close();
@@ -33,8 +35,8 @@ export default function AuthModal({ mode, close }) {
         navigate("/chat");
       }
     } catch (err) {
-       toast.error(err.message || "Invalid credentials");
-      // alert("Invalid Credentials");   
+      //  toast.error(err.message || "Invalid credentials");
+      alert("Invalid Credentials");   
     //   Toastify("Error: " + (err.response?.data?.message || err.message), "error");
     //       const message =
     // err.response?.data?.message || err.message || "Invalid credentials";
