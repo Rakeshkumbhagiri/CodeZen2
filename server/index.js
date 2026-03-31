@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // get route
 app.get("/", (req, res) => {
-  res.send("Server is running");
+  res.status(200).send("CodeZen API is running 🚀");
 });
 
 // Test Route
