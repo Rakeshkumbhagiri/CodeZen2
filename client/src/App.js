@@ -2,6 +2,10 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Suspense,lazy } from "react";
 import { useEffect } from "react";
 
+//newly added
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import HomePage from "./pages/HomePage";
 const Login = lazy(() => import("./pages/Login"));
 const ChatLayout = lazy(() => import("./pages/ChatLayout"));
@@ -25,6 +29,7 @@ function App() {
 
 
   return (
+    <>
     <Suspense fallback="Loading...">
     <Routes>
       {/* Home → Get Started */}
@@ -66,6 +71,17 @@ function App() {
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
     </Suspense>
+
+    
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        theme="colored"
+      />
+      </>
   );
 }
 
