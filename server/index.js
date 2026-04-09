@@ -12,6 +12,7 @@ import chatRoutes from "./routes/chat.js";
 import dsaTutorRoutes from "./routes/dsaTutor.js";
 import tutorRoutes from "./routes/tutor.js";
 import userRoutes from "./routes/user.js";
+import aiRoutes from "./routes/ai.js";
 
 dotenv.config();
 connectDB();
@@ -39,6 +40,7 @@ app.use("/api/chat", chatRoutes);
 app.use("/api/dsa", dsaTutorRoutes);
 app.use("/api/tutors", tutorRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/ai", aiRoutes);
 
 // Start Server
 // const PORT = 5000;

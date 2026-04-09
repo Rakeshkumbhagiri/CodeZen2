@@ -67,6 +67,8 @@ const SolvePage = () => {
   const [leftTab, setLeftTab] = useState("problem");
   const [chatOpen, setChatOpen] = useState(false); // Default closed for more workspace
   const [code, setCode] = useState("");
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiSuggestion, setAiSuggestion] = useState("");
 
   // Load problem
   useEffect(() => {
@@ -112,6 +114,43 @@ const SolvePage = () => {
       });
     } catch {
       toast.error("Submit failed");
+    }
+  };
+
+  // AI Auto-Fix Code
+  const handleAutoFix = async () => {
+    if (!code.trim()) return toast.error("Write code first to get suggestions!");
+    
+    setAiLoading(true);
+    setAiSuggestion("");
+    setChatOpen(true);
+    
+    try {
+      const response = await fetch("http://localhost:5000/api/ai/repair", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: code }),
+      });
+      const data = await response.json();
+      
+      if (data.success) {
+        setAiSuggestion(data.fixed_code);
+        toast.success("AI generated a fix!", { icon: '🤖' });
+      } else {
+        toast.error("AI Error: " + (data.error || "Failed to generate fix"));
+      }
+    } catch (err) {
+      toast.error("AI Error: Failed to reach the server");
+    } finally {
+      setAiLoading(false);
+    }
+  };
+
+  const handleApplyFix = () => {
+    if (aiSuggestion) {
+      setCode(aiSuggestion);
+      setAiSuggestion("");
+      toast.success("Fix applied to editor!");
     }
   };
 
@@ -245,21 +284,44 @@ const SolvePage = () => {
         >
           <div className="h-14 px-4 flex items-center justify-between border-b border-gray-200 bg-gray-50">
              <span className="text-sm font-bold flex items-center gap-2 text-blue-700">
-               <MessageSquare size={16} /> CodeZen Assistant
+               <Zap size={16} /> CodeT5 AI Assistant
              </span>
              <button onClick={() => setChatOpen(false)} className="text-gray-500 hover:text-gray-900 transition-colors">
                 <PanelRightClose size={16} />
              </button>
           </div>
           
-          <div className="flex-1 p-4 flex flex-col items-center justify-center text-center text-gray-600 border-l border-gray-50">
-             <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-4 border border-blue-100 shadow-sm">
-               <Zap size={24} className="text-blue-500" />
-             </div>
-             <h4 className="text-[15px] font-bold text-gray-800 mb-2">Need a Hint?</h4>
-             <p className="text-sm text-gray-500 leading-relaxed max-w-[200px]">
-               The AI Assistant tab helps you engage with intelligent hints and code reviews securely.
-             </p>
+          <div className="flex-1 p-4 flex flex-col gap-4 text-gray-600 border-l border-gray-50 overflow-y-auto">
+             <button 
+               onClick={handleAutoFix}
+               disabled={aiLoading}
+               className="w-full flex items-center justify-center gap-2 py-2 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-semibold text-sm hover:from-blue-700 hover:to-indigo-700 disabled:opacity-70 shadow-sm"
+             >
+               {aiLoading ? <Zap size={16} className="animate-pulse" /> : <Zap size={16} />}
+               {aiLoading ? "Analyzing Code..." : "Auto-Fix My Code"}
+             </button>
+
+             {aiSuggestion ? (
+               <div className="mt-2 text-sm border border-emerald-200 rounded-lg overflow-hidden flex flex-col">
+                 <div className="bg-emerald-50 px-3 py-2 border-b border-emerald-200 font-bold text-emerald-800 flex items-center justify-between">
+                    <span>Suggested Fix</span>
+                 </div>
+                 <div className="p-3 bg-gray-50 overflow-x-auto max-h-[300px] overflow-y-auto font-mono text-xs text-gray-800">
+                   <pre>{aiSuggestion}</pre>
+                 </div>
+                 <button onClick={handleApplyFix} className="py-2 bg-emerald-600 text-white font-semibold text-xs hover:bg-emerald-700">Apply Fix to Editor</button>
+               </div>
+             ) : (
+                <div className="flex-1 flex flex-col items-center justify-center text-center mt-8">
+                  <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-4 border border-blue-100 shadow-sm">
+                    <Zap size={24} className="text-blue-500" />
+                  </div>
+                  <h4 className="text-[15px] font-bold text-gray-800 mb-2">Need a Hint?</h4>
+                  <p className="text-sm text-gray-500 leading-relaxed max-w-[200px]">
+                    Click "Auto-Fix My Code" to have our CodeT5 ML model analyze and repair your bugs!
+                  </p>
+                </div>
+             )}
           </div>
         </div>
 

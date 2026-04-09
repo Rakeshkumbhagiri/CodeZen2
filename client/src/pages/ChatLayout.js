@@ -374,7 +374,7 @@ export default function ChatLayout({ setToken }) {
     {/* BACK TO HOME BUTTON */}
     <div className="px-2 py-4">
       <button
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/dashboard")}
         className="fixed w-full py-3 font-medium text-center text-white bg-gray-700 rounded-lg bottom-4 left-4 sm:w-64 hover:bg-gray-800"
       >
         <ArrowBigLeftDashIcon
