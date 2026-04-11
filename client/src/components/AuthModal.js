@@ -141,6 +141,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 import { motion } from "framer-motion";
+
 import { toast } from "react-toastify";
 
 export default function AuthModal({ mode, close }) {
@@ -185,7 +186,7 @@ export default function AuthModal({ mode, close }) {
         close();
 
         setTimeout(() => {
-          navigate("/chat");
+          navigate("/dashboard");
         }, 2000);
       }
 

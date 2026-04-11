@@ -180,6 +180,16 @@ const Navbar = () => {
                     >
                       <span>Profile</span>
                     </button>
+                    {/* Dashboard */}
+                    <button
+                      onClick={() => {
+                        setDropdownOpen(false);
+                        window.location.href = "/dashboard";
+                      }}
+                      className="flex items-center w-full gap-2 px-4 py-3 transition-all duration-200 hover:bg-gray-400 hover:translate-x-1"
+                    >
+                      <span>Dashboard</span>
+                    </button>
 
                     {/* Chat */}
                     <button
