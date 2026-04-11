@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Trash2, FileText, Bold, Code, List, Type, Upload } from "lucide-react";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 
 const FORMAT_SHORTCUTS = [
   { icon: Bold, label: "Bold", insert: "**text**", select: "text" },
@@ -84,7 +84,7 @@ const NotesPanel = ({ problemId, problemTitle }) => {
     deleteNote(problemId);
     setContent("");
     setSaveStatus("saved");
-    toast("Note deleted", { icon: "🗑️" });
+    // toast("Note deleted", { icon: "🗑️" });
   };
 
   // PDF upload
@@ -93,17 +93,17 @@ const NotesPanel = ({ problemId, problemTitle }) => {
     if (!file) return;
 
     if (file.type !== "application/pdf") {
-      toast.error("Only PDF files are allowed");
+      // toast.error("Only PDF files are allowed");
       return;
     }
 
     setPdfFile(file);
-    toast.success("PDF uploaded");
+    // toast.success("PDF uploaded");
   };
 
   const handleRemoveFile = () => {
     setPdfFile(null);
-    toast("PDF removed", { icon: "🗑️" });
+    // toast("PDF removed", { icon: "🗑️" });
   };
 
   const wordCount = content.trim().split(/\s+/).filter(Boolean).length;

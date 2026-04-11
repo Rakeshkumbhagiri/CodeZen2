@@ -64,9 +64,9 @@ Assistant:
 
     res.json({ reply, chatId: chat._id });
   } catch (error) {
-    console.error("GEMINI CHAT ERROR FULL:", error);
+    console.error(" CHAT ERROR FULL:", error);
     res.status(500).json({
-      error: error?.message || "Gemini AI error",
+      error: error?.message || " AI error",
     });
   }
 });
