@@ -5,7 +5,6 @@ import User from "../models/User.js";
 const router = express.Router();
 
 router.get("/profile", protect, async (req, res) => {
-    // console.log("User ID:", req.user.id);
   try {
     const user = await User.findById(req.user.id).select("-password");
 

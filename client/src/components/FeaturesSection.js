@@ -1,49 +1,3 @@
-// import { motion, useScroll, useTransform } from "framer-motion";
-// import { useRef } from "react";
-// import { Terminal, Code2, TestTube, Lightbulb, FileCode, Bug } from "lucide-react";
-// import { ChatPreview } from "./ChatPreview";
-
-// const stages = [
-//   { icon: Terminal, title: "Problem Understanding", description: "Break down the problem." },
-//   { icon: TestTube, title: "Test Case Analysis", description: "Analyze edge cases." },
-//   { icon: Lightbulb, title: "Logic Building", description: "Build approach." },
-//   { icon: Code2, title: "Algorithm", description: "Design algorithm." },
-//   { icon: FileCode, title: "Implementation", description: "Write code." },
-//   { icon: Bug, title: "Debug", description: "Fix issues." },
-// ];
-
-// function StageCard({ stage, index }) {
-//   const ref = useRef(null);
-//   const { scrollYProgress } = useScroll({ target: ref });
-//   const y = useTransform(scrollYProgress, [0, 1], [100, 0]);
-
-//   const Icon = stage.icon;
-
-//   return (
-//     <motion.div ref={ref} style={{ y }} className="py-4 ml-48 bg-gray-100 rounded-lg shadow">
-//       <div className="flex items-center gap-4 ">
-//         <Icon />
-//         <div>
-//           <h3 className="font-semibold">{stage.title}</h3>
-//           <p>{stage.description}</p>
-//         </div>
-//       </div>
-//     </motion.div>
-//   );
-// }
-
-// export function FeaturesSection() {
-//   return (
-//     <section className="container mt-10">
-//       <div className="space-y-8">
-//         {stages.map((s, i) => (
-//           <StageCard key={i} stage={s} index={i} />
-//         ))}
-//       </div>
-//       <ChatPreview />
-//     </section>
-//   );
-// }
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import {
@@ -55,8 +9,6 @@ import {
   Bug,
 } from "lucide-react";
 import { ChatPreview } from "./ChatPreview";
-import Footer from "./Footer";
-// import { TestimonialsSection } from "./TestimonialsSection";
 
 const stages = [
   {
@@ -160,8 +112,6 @@ function FeaturesSection() {
         {/* Chat Preview */}
         <div className="-ml-48 -mt-14">
           <ChatPreview />
-          {/* <Footer /> */}
-          {/* <TestimonialsSection /> */}
         </div>
       </div>
     </section>

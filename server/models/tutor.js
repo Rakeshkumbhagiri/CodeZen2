@@ -12,10 +12,10 @@ const tutorSchema = new mongoose.Schema(
       required: [true, "Topic is required"],
       trim: true,
     },
+  },
+  {
+    timestamps: true,
   }
-  // {
-  //   timestamps: true, // adds createdAt & updatedAt
-  // }
 );
 
 // Force exact collection name: "DSA-Tutor"

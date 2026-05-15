@@ -7,33 +7,8 @@ const router = express.Router();
  * CREATE Tutor
  * POST /api/tutors
  */
-// router.post("/", async (req, res) => {
-//   console.log("Checking request body:", req.body);
-//   console.log("cheking heasders:", req.headers);
-//   try {
-//     const { name, topic } = req.body;
-
-//     if (!name || !topic) {
-//       return res.status(400).json({
-//         message: "Name and topic are required",
-//       });
-//     }
-
-//     const tutor = await Tutor.create({ name, topic });
-
-//     res.status(201).json({
-//       message: "Tutor created successfully",
-//       data: tutor,
-//     });
-//   } catch (error) {
-//     res.status(400).json({
-//       message: error.message,
-//     });
-//   }
-// });
 router.post("/", async (req, res) => {
   try {
-    // Works with form-data (text fields)
     const name = req.body.name;
     const topic = req.body.topic;
 
@@ -59,6 +34,7 @@ router.post("/", async (req, res) => {
     });
   }
 });
+
 /**
  * GET All Tutors
  * GET /api/tutors

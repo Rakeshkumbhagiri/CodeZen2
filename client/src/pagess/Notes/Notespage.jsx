@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { Trash2, FileText, Bold, Code, List, Type, Upload } from "lucide-react";
-// import toast from "react-hot-toast";
 
 const FORMAT_SHORTCUTS = [
   { icon: Bold, label: "Bold", insert: "**text**", select: "text" },
@@ -9,7 +8,7 @@ const FORMAT_SHORTCUTS = [
   { icon: Type, label: "Heading", insert: "\n## Heading\n" },
 ];
 
-// ✅ localStorage helpers (replaces Zustand)
+// localStorage helpers
 const getNote = (id) => localStorage.getItem(`note-${id}`) || "";
 
 const saveNote = (id, value) => {
@@ -27,7 +26,7 @@ const NotesPanel = ({ problemId, problemTitle }) => {
 
   const [pdfFile, setPdfFile] = useState(null);
 
-  // ✅ Auto-save with debounce (no external hook)
+  // Auto-save with debounce
   useEffect(() => {
     const timer = setTimeout(() => {
       if (content !== getNote(problemId)) {
@@ -84,7 +83,6 @@ const NotesPanel = ({ problemId, problemTitle }) => {
     deleteNote(problemId);
     setContent("");
     setSaveStatus("saved");
-    // toast("Note deleted", { icon: "🗑️" });
   };
 
   // PDF upload
@@ -93,17 +91,14 @@ const NotesPanel = ({ problemId, problemTitle }) => {
     if (!file) return;
 
     if (file.type !== "application/pdf") {
-      // toast.error("Only PDF files are allowed");
       return;
     }
 
     setPdfFile(file);
-    // toast.success("PDF uploaded");
   };
 
   const handleRemoveFile = () => {
     setPdfFile(null);
-    // toast("PDF removed", { icon: "🗑️" });
   };
 
   const wordCount = content.trim().split(/\s+/).filter(Boolean).length;

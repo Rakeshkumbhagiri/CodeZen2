@@ -6,8 +6,6 @@ import { tutorPrompt } from "../tutorPrompt.js";
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  console.log("/api/chat HIT");
- 
   try {
     const apiKey = process.env.GEMINI_API_KEY;
 
@@ -17,7 +15,6 @@ router.post("/", async (req, res) => {
       });
     }
 
-    
     const ai = new GoogleGenAI({ apiKey });
 
     const { message, chatId } = req.body;
@@ -34,23 +31,15 @@ router.post("/", async (req, res) => {
     // Save user message
     chat.messages.push({ role: "user", content: message });
 
-    // 🔹 Build plain-text conversation (UNCHANGED)
+    // Build plain-text conversation
     const conversation = chat.messages
       .map((m) =>
         m.role === "user" ? `User: ${m.content}` : `Assistant: ${m.content}`,
       )
       .join("\n");
 
-    const prompt = `
-${tutorPrompt}
+    const prompt = `${tutorPrompt}\n\nConversation so far:\n${conversation}\n\nAssistant:`;
 
-Conversation so far:
-${conversation}
-
-Assistant:
-`;
-
-    // ✅ NEW SDK generate call (same behavior)
     const result = await ai.models.generateContent({
       model: "models/gemini-2.5-flash",
       contents: prompt,
@@ -64,13 +53,11 @@ Assistant:
 
     res.json({ reply, chatId: chat._id });
   } catch (error) {
-    console.error(" CHAT ERROR FULL:", error);
+    console.error("CHAT ERROR:", error);
     res.status(500).json({
-      error: error?.message || " AI error",
+      error: error?.message || "AI error",
     });
   }
 });
 
 export default router;
-
-

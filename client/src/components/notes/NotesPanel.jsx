@@ -345,7 +345,7 @@ const NotesPanel = ({ problemId, problemTitle }) => {
 
           {/* Upload PDF */}
           <label className="p-1.5 rounded-lg cursor-pointer text-gray-400 hover:text-blue-400">
-            <Upload size={13} />
+            <Upload size={15} />
             <input
               type="file"
               accept="application/pdf"
@@ -388,16 +388,6 @@ const NotesPanel = ({ problemId, problemTitle }) => {
 
       {/* Toolbar */}
       <div className="flex items-center gap-1 px-3 py-2 border-b border-gray-800 bg-gray-900/40">
-        {FORMAT_SHORTCUTS.map(({ icon: Icon, label, insert, select }) => (
-          <button
-            key={label}
-            onClick={() => handleInsert({ insert, select })}
-            className="flex items-center justify-center text-gray-400 rounded-lg w-7 h-7 hover:bg-indigo-500/20 hover:text-indigo-400"
-            title={label}
-          >
-            <Icon size={13} />
-          </button>
-        ))}
         <div className="flex-1" />
         <span className="text-[10px] text-gray-400">Markdown supported</span>
       </div>
